@@ -1,0 +1,29 @@
+*target*
+*node_modules*
+*.jar
+*.war
+*.ear
+*.class
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# eclipse specific git ignore
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+.factorypath
+
+# Checkstyle
+.checkstyle
