@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
- <modelVersion>4.0.0</modelVersion>
- <parent>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
     <groupId>com.example</groupId>
     <artifactId>Heroes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -8,9 +8,27 @@
   </parent>
   <artifactId>Heroes-boot</artifactId>
 
-<packaging>jar</packaging>
-<build>
-  <finalName>${project.artifactId}-${project.version}</finalName>
-</build>
+  <packaging>jar</packaging>
+  <build>
+    <finalName>${project.artifactId}-${project.version}</finalName>
+  </build>
 
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>Heroes-model</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-r2dbc</artifactId>
+    </dependency>
+  </dependencies>
+
+  <!-- Project Information -->
+
+  <name>${project.artifactId}</name>
+
+  <!-- /////////////////// -->
 </project>
