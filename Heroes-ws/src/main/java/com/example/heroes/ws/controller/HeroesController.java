@@ -28,7 +28,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping(path = HeroesController.PATH)
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class HeroesController {
 

@@ -13,17 +13,15 @@ import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-@SpringBootTest(
-    webEnvironment = WebEnvironment.RANDOM_PORT
-)
+@SpringBootTest(classes = HeroesController.class)
 public class HeroesControllerTest {
 
   private static final int IRON_MAN_ID = 1;
@@ -49,9 +47,10 @@ public class HeroesControllerTest {
       .name(SCARLET_WITCH.getName())
       .build();
 
+  @InjectMocks
   private HeroesController controller;
 
-  private HeroesService service = mock(DefaultHeroesService.class);
+  private HeroesService service = mock(HeroesService.class);
 
   private HeroesMapper mapper = mock(HeroesMapper.class);
 
@@ -59,7 +58,6 @@ public class HeroesControllerTest {
 
   @BeforeEach
   public void init() {
-    this.controller = new HeroesController(this.service, this.mapper);
     client = WebTestClient.bindToController(controller).build();
     when(mapper.toDTO(SCARLET_WITCH)).thenReturn(SCARLET_WITCH_DTO);
     when(mapper.fromDTO(SCARLET_WITCH_DTO)).thenReturn(SCARLET_WITCH);
