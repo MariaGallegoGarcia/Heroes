@@ -54,6 +54,12 @@
       <artifactId>springfox-spring-webflux</artifactId>
       <version>3.0.0</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.8.9</version>
+    </dependency>
   </dependencies>
 
   <packaging>jar</packaging>

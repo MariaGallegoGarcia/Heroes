@@ -2,6 +2,7 @@ package com.example.heroes.ws.controller;
 
 import com.example.heroes.api.service.HeroesService;
 import com.example.heroes.exceptions.HeroeNotFoundException;
+import com.example.heroes.annotation.Timed;
 import com.example.heroes.ws.dto.HeroeDTO;
 import com.example.heroes.ws.mapper.HeroesMapper;
 import io.swagger.annotations.ApiOperation;
@@ -41,6 +42,7 @@ public class HeroesController {
   /**
    * Returns all the heroes.
    */
+  @Timed(millis = 1000)
   @GetMapping
   @ApiOperation("Returns all the heroes")
   @ApiResponses(value = {
@@ -60,6 +62,7 @@ public class HeroesController {
    *
    * @return Response code
    */
+  @Timed(millis = 1000)
   @PutMapping
   @ApiOperation("Inserts or updates a heroe")
   @ApiResponses(value = {@ApiResponse(code = HttpServletResponse.SC_OK, message = "OK")})
@@ -72,6 +75,7 @@ public class HeroesController {
    *
    * @return Response code
    */
+  @Timed(millis = 1000)
   @DeleteMapping("/{id}")
   @ApiOperation("Deletes a heroe by ID")
   @ApiResponses({@ApiResponse(code = HttpServletResponse.SC_OK, message = "OK")})
@@ -84,6 +88,7 @@ public class HeroesController {
    *
    * @return Response code
    */
+  @Timed(millis = 1000)
   @GetMapping("/{id}")
   @ApiOperation("Gets a heroe by ID")
   @ApiResponses({
@@ -99,6 +104,7 @@ public class HeroesController {
   /**
    * Searches all the heroes that contains this string on the name.
    */
+  @Timed(millis = 1000)
   @GetMapping("/name/{name}")
   @ApiResponses(value = {
       @ApiResponse(code = HttpServletResponse.SC_OK, message = "OK", response = HeroeDTO.class),
