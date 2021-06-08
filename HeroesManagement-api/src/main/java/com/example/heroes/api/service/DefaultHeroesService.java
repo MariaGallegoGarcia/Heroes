@@ -34,7 +34,6 @@ public class DefaultHeroesService implements HeroesService {
         .then();
   }
 
-
   @Override
   public Flux<Heroe> getAll() {
     return this.repository.findAll().map(mapper::toDO);

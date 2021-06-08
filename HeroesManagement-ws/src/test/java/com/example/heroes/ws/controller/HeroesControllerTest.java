@@ -4,6 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
 import com.example.heroes.api.service.HeroesService;
 import com.example.heroes.api.service.domain.Heroe;
 import com.example.heroes.ws.dto.HeroeRequestDTO;
@@ -14,15 +15,15 @@ import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-@SpringBootTest(classes = HeroesController.class)
+@ExtendWith(MockitoExtension.class)
 public class HeroesControllerTest {
 
   private static final int IRON_MAN_ID = 1;
@@ -71,11 +72,8 @@ public class HeroesControllerTest {
   @InjectMocks
   private HeroesController controller;
 
-  private WebTestClient client;
-
   @BeforeEach
   public void init() {
-    client = WebTestClient.bindToController(controller).build();
     when(responseMapper.toDTO(SCARLET_WITCH)).thenReturn(SCARLET_WITCH_DTO);
     when(requestMapper.fromDTO(SCARLET_WITCH_REQUEST_DTO)).thenReturn(SCARLET_WITCH);
     when(responseMapper.toDTO(JESSICA_JONES)).thenReturn(JESSICA_JONES_DTO);
@@ -90,19 +88,6 @@ public class HeroesControllerTest {
         .as(StepVerifier::create)
         .expectComplete()
         .verify();
-    verify(service, times(1)).delete(IRON_MAN_ID);
-  }
-
-  @Test
-  public void deletesHeroeById() {
-    when(service.delete(IRON_MAN_ID)).thenReturn(Mono.empty());
-
-    client
-        .delete()
-        .uri(HeroesController.PATH + "/" + IRON_MAN_ID)
-        .exchange()
-        .expectStatus()
-        .isOk();
     verify(service, times(1)).delete(IRON_MAN_ID);
   }
 
@@ -139,5 +124,23 @@ public class HeroesControllerTest {
         .expectNext(ResponseEntity.of(Optional.of(JESSICA_JONES_DTO)))
         .expectComplete()
         .verify();
+  }
+
+  @Test
+  public void saveHeroe() {
+    when(service.save(JESSICA_JONES)).thenReturn(Mono.empty());
+
+    controller.save(JESSICA_JONES_REQUEST_DTO)
+        .as(StepVerifier::create)
+        .verifyComplete();
+  }
+
+  @Test
+  public void updateHeroe() {
+    when(service.update(JESSICA_JONES)).thenReturn(Mono.empty());
+
+    controller.update(JESSICA_JONES_REQUEST_DTO)
+        .as(StepVerifier::create)
+        .verifyComplete();
   }
 }

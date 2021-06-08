@@ -35,7 +35,7 @@ public class DatasourceConfig {
     return (args) -> Flux.from(connectionFactory.create())
         .flatMap(c -> Flux
             .from(c.createBatch().add("drop table if exists Heroe")
-                .add("create table IF NOT EXISTS Heroe" + "(id BIGINT NOT NULL AUTO_INCREMENT,"
+                .add("create table IF NOT EXISTS Heroe (id BIGINT NOT NULL AUTO_INCREMENT,"
                     + " name varchar (50) not null PRIMARY KEY, realName varchar (100))")
                 .add("insert into Heroe(name, realName) values('Aquaman', 'Arthur Curry')")
                 .add("insert into Heroe(name, realName) values('Iron man', 'Tony Stark')")
