@@ -1,7 +1,0 @@
-server:
- port: 8080
- servlet:
-  contextPath: /heroes
-
-r2dbc:
-  url: r2dbc:h2:mem://./testdb

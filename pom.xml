@@ -11,14 +11,14 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Heroes</artifactId>
+	<artifactId>HeroesManagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>Heroes-model</module>
-		<module>Heroes-api</module>
-		<module>Heroes-boot</module>
-		<module>Heroes-ws</module>
+		<module>HeroesManagement-model</module>
+		<module>HeroesManagement-api</module>
+		<module>HeroesManagement-boot</module>
+		<module>HeroesManagement-ws</module>
 	</modules>
 
 	<name>${project.artifactId}</name>
